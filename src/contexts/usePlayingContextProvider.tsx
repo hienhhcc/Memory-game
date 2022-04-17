@@ -44,12 +44,8 @@ const playingReducer = (state: IState, action: IAction) => {
       };
     case EPlayingAction.OPEN:
       newButtonOpenStates[payload?.buttonIndex!] = ETileState.OPEN;
-      //TODO: Nếu chưa mở ô đầu hoặc ô vừa mở là (giống như) ô đầu
-      if (
-        !state.firstOpenTile.value ||
-        (state.firstOpenTile.value &&
-          payload?.buttonIndex! === state.firstOpenTile.index)
-      ) {
+      //TODO: Nếu chưa mở ô đầu
+      if (!state.firstOpenTile.value) {
         return {
           ...state,
           countOpen: state.countOpen + 1,
@@ -61,8 +57,17 @@ const playingReducer = (state: IState, action: IAction) => {
         };
       }
 
+      //TODO: Nếu ô vừa mở là ô đầu
+      if (
+        state.firstOpenTile.value &&
+        payload?.buttonIndex! === state.firstOpenTile.index
+      ) {
+        return {
+          ...state,
+        };
+      }
+
       //TODO: Đã mở ô đâù, nếu giá trị ô sau và ô đầu giống nhau
-      console.log(payload?.buttonValue!, state.firstOpenTile.value);
       if (payload?.buttonValue! === state.firstOpenTile.value) {
         //TODO: Đánh dấu 2 ô done
         newButtonOpenStates[state.firstOpenTile.index!] = ETileState.DONE;

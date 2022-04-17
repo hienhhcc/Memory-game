@@ -8,7 +8,7 @@ const GamePlay = () => {
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     // console.log(countOpen);
-    if (countOpen % 2 === 0 || countOpen !== 0) {
+    if (countOpen % 2 === 0 && countOpen !== 0) {
       timeout = setTimeout(() => {
         closeAllTiles();
       }, 1000);

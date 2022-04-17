@@ -8,7 +8,8 @@ interface Props {
 }
 
 const GamePlayGridItem = ({ children, buttonIndex }: Props) => {
-  const { buttonOpenStates, openTile } = usePlaying();
+  const { buttonOpenStates, openTile, firstOpenTile, secondOpenTile } =
+    usePlaying();
 
   const onClickButtonHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
     openTile(buttonIndex, children);
@@ -17,12 +18,13 @@ const GamePlayGridItem = ({ children, buttonIndex }: Props) => {
   return (
     <button
       onClick={onClickButtonHandler}
+      disabled={firstOpenTile.value && secondOpenTile.value}
       className={`w-14 h-14 rounded-full outline-none ${
         buttonOpenStates[buttonIndex] === ETileState.OPEN
-          ? 'bg-orange-500 text-white'
+          ? 'bg-orange-500 text-white text-base'
           : buttonOpenStates[buttonIndex] === ETileState.DONE
-          ? 'bg-slate-400 text-white'
-          : 'bg-slate-700 text-slate-700'
+          ? 'bg-slate-400 text-white  text-base'
+          : 'bg-slate-700 text-slate-700 text-[0px]'
       }`}
     >
       {children}
