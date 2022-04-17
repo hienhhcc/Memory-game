@@ -38,7 +38,7 @@ const playingReducer = (state: IState, action: IAction) => {
       return {
         ...state,
         isPlaying: true,
-        gameConfig: payload?.gameConfig,
+        gameConfig: state.gameConfig,
         countOpen: 0,
         buttonOpenStates: Array.from(Array(36).fill(ETileState.CLOSE)),
       };

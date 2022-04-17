@@ -1,5 +1,5 @@
 export interface IGameConfig {
-  theme: string;
-  numPlayer: string;
-  gridSize: string;
+  theme: string | null;
+  numPlayer: string | null;
+  gridSize: string | null;
 }
