@@ -17,9 +17,9 @@ const Button = ({
     <button
       type={type}
       className={`cursor-pointer py-3 px-1 my-2 rounded-full text-center text-white uppercase 
-        hover:bg-orange-300 ${type === 'submit' ? 'bg-orange-500' : ''} ${
-        customStyle ? customStyle : ''
-      }`}
+        hover:bg-orange-300 ${
+          type === 'submit' ? 'bg-orange-500' : 'bg-slate-400'
+        } ${customStyle ? customStyle : ''}`}
       onClick={onClick}
     >
       {children}

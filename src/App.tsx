@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import usePlaying from './contexts/usePlaying';
 
-import { StartGameConfig } from './pages';
+import { GamePlay, StartGameConfig } from './pages';
 
 function App() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { isPlaying } = usePlaying();
 
   let content = <StartGameConfig />;
 
   if (isPlaying) {
-    content = <h1>Hello</h1>;
+    content = <GamePlay />;
   }
 
   return content;

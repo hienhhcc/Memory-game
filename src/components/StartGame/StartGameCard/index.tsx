@@ -1,9 +1,4 @@
-import { ReactElement } from 'react';
 import StartGameForm from '../StartGameForm';
-
-interface Props {
-  // children: ReactElement | ReactElement[];
-}
 
 const StartGameCard = () => {
   return (

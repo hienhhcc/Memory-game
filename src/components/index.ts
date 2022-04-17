@@ -7,6 +7,8 @@ import Button from './Button';
 import ThemeInputControl from './StartGame/StartGameForm/ThemeInputControl';
 import PlayersInputControl from './StartGame/StartGameForm/PlayersInputControl';
 import GridSizeInputControl from './StartGame/StartGameForm/GridSizeInputControl';
+import GamePlayActions from './GamePlay/GamePlayActions';
+import GamePlayGrid from './GamePlay/GamePlayGrid';
 
 export {
   StartGameCard,
@@ -18,4 +20,6 @@ export {
   ThemeInputControl,
   PlayersInputControl,
   GridSizeInputControl,
+  GamePlayActions,
+  GamePlayGrid,
 };
