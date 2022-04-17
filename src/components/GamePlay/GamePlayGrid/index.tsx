@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import usePlaying from '../../../contexts/usePlaying';
 import { createGridItems } from '../../../helpers/createGridItems.helper';
 import GamePlayGridItem from './GamePlayGridItem';
@@ -7,7 +8,10 @@ const GamePlayGrid = () => {
     gameConfig: { theme, gridSize },
   } = usePlaying();
 
-  const gridItems = createGridItems({ theme, gridSize });
+  const gridItems = useMemo(
+    () => createGridItems({ theme, gridSize }),
+    [theme, gridSize]
+  );
 
   return (
     <div className="max-w-[768px] mx-auto">
@@ -16,8 +20,10 @@ const GamePlayGrid = () => {
           gridSize === '44' ? 'grid-cols-4' : 'grid-cols-6'
         } my-6 gap-2 min-w-[300px]`}
       >
-        {gridItems.map((item: any) => (
-          <GamePlayGridItem key={item}>{item}</GamePlayGridItem>
+        {gridItems.map((item: any, index) => (
+          <GamePlayGridItem buttonIndex={index} key={item + Math.random()}>
+            {item}
+          </GamePlayGridItem>
         ))}
       </div>
     </div>

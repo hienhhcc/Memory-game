@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { ETileState } from '../enums';
 import { IGameConfig, IPlayingContext } from '../interfaces';
 
 const PlayingContext = createContext<IPlayingContext>({
@@ -9,10 +10,20 @@ const PlayingContext = createContext<IPlayingContext>({
     gridSize: null,
   },
   countOpen: 0,
-  buttonOpenStates: Array.from(Array(36).fill(false)),
+  firstOpenTile: {
+    index: null,
+    value: null,
+  },
+  secondOpenTile: {
+    index: null,
+    value: null,
+  },
+  buttonOpenStates: Array.from(Array(36).fill(ETileState.CLOSE)),
   startGame: (gameConfig: IGameConfig) => {},
   restartGame: () => {},
   newGame: () => {},
+  openTile: (tileIndex: number, tileValue: any) => {},
+  closeAllTiles: () => {},
 });
 
 export default PlayingContext;
