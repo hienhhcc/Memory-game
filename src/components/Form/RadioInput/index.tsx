@@ -9,17 +9,20 @@ interface Props {
   };
   name: string;
   label: string;
+  checkedValue: string | number;
 }
 
-const RadioInput = ({ inputProps, name, label }: Props) => {
+const RadioInput = ({ inputProps, name, label, checkedValue }: Props) => {
   const { register, watch } = useFormContext();
-  const watchInputName = watch(name, 'number');
+  const watchInputName = watch(name, checkedValue);
 
   return (
     <Fragment>
       <label
         className={`rounded-full text-white  p-3 w-full text-center cursor-pointer ${
-          watchInputName === inputProps.value ? 'bg-slate-700' : 'bg-slate-400'
+          watchInputName.toString() === inputProps.value.toString()
+            ? 'bg-slate-800'
+            : 'bg-slate-400'
         }`}
         htmlFor={inputProps.id}
       >

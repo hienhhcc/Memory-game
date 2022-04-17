@@ -1,4 +1,10 @@
-import { Form, RadioInput, Button } from 'components';
+import {
+  Form,
+  ThemeInputControl,
+  PlayersInputControl,
+  GridSizeInputControl,
+  Button,
+} from 'components';
 import useStartGameForm from './hook';
 
 const StartGameForm = () => {
@@ -7,27 +13,13 @@ const StartGameForm = () => {
 
   return (
     <Form onSubmit={onSubmitStartGame}>
-      <legend>Select Theme</legend>
-      <div className="flex justify-center align-center gap-3">
-        <RadioInput
-          label="Numbers"
-          name="theme"
-          inputProps={{
-            id: 'numberTheme',
-            value: 'number',
-            checked: true,
-          }}
-        />
-        <RadioInput
-          label="Icons"
-          name="theme"
-          inputProps={{
-            id: 'iconTheme',
-            value: 'icon',
-          }}
-        />
-      </div>
-      <Button customStyle={'w-full'} type="submit">
+      <legend className="text-slate-400 mb-2">Select Theme</legend>
+      <ThemeInputControl />
+      <legend className="text-slate-400 mt-4 mb-2">Number of players</legend>
+      <PlayersInputControl />
+      <legend className="text-slate-400 mt-4 mb-2">Grid Size</legend>
+      <GridSizeInputControl />
+      <Button customStyle={'w-full mt-4'} type="submit">
         Start Game
       </Button>
     </Form>

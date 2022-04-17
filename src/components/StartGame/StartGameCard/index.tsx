@@ -7,7 +7,7 @@ interface Props {
 
 const StartGameCard = () => {
   return (
-    <div className="rounded-md bg-gray-100 m-auto w-[568px] p-4">
+    <div className="rounded-md bg-gray-100 m-auto w-[568px] p-6">
       <StartGameForm />
     </div>
   );
