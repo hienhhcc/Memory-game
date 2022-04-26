@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import usePlaying from '../../../contexts/usePlaying';
 import { createGridItems } from '../../../helpers/createGridItems.helper';
 import GamePlayGridItem from './GamePlayGridItem';

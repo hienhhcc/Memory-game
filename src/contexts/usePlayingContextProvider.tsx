@@ -1,6 +1,6 @@
-import { useCallback, useReducer } from 'react';
-import { EPlayingAction, ETileState } from '../enums';
-import { IAction, IGameConfig, IPlayingContext, IState } from '../interfaces';
+import { useCallback, useReducer } from "react";
+import { EPlayingAction, ETileState } from "../enums";
+import { IAction, IGameConfig, IPlayingContext, IState } from "../interfaces";
 
 const initialState = {
   isPlaying: false,
@@ -126,24 +126,24 @@ const usePlayingContextProvider = (): IPlayingContext => {
   // const [isPlaying, setIsPlaying] = useState(false);
   const [state, dispatch] = useReducer(playingReducer, initialState);
 
-  const startGame = (gameConfig: IGameConfig) => {
+  const startGame = useCallback((gameConfig: IGameConfig) => {
     dispatch({
       type: EPlayingAction.START,
       payload: {
         gameConfig,
       },
     });
-  };
+  }, []);
 
-  const restartGame = () => {
+  const restartGame = useCallback(() => {
     dispatch({ type: EPlayingAction.RESTART });
-  };
+  }, []);
 
-  const newGame = () => {
+  const newGame = useCallback(() => {
     dispatch({ type: EPlayingAction.NEW });
-  };
+  }, []);
 
-  const openTile = (tileIndex: number, tileValue: any) => {
+  const openTile = useCallback((tileIndex: number, tileValue: any) => {
     dispatch({
       type: EPlayingAction.OPEN,
       payload: {
@@ -151,7 +151,7 @@ const usePlayingContextProvider = (): IPlayingContext => {
         buttonValue: tileValue,
       },
     });
-  };
+  }, []);
 
   const closeAllTiles = useCallback(() => {
     dispatch({ type: EPlayingAction.CLOSEALL });

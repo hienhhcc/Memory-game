@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { GamePlayActions, GamePlayGrid } from '../../components';
-import usePlaying from '../../contexts/usePlaying';
+import { useEffect } from "react";
+import { GamePlayActions, GamePlayGrid } from "../../components";
+import usePlaying from "../../contexts/usePlaying";
 
 const GamePlay = () => {
   const { countOpen, closeAllTiles } = usePlaying();
@@ -15,12 +15,14 @@ const GamePlay = () => {
     }
 
     return () => {
-      clearTimeout(timeout);
+      if (timeout) {
+        clearTimeout(timeout);
+      }
     };
   }, [countOpen, closeAllTiles]);
 
   return (
-    <main className="p-10">
+    <main className='p-10'>
       <GamePlayActions />
       <GamePlayGrid />
     </main>
