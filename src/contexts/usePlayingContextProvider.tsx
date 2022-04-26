@@ -1,6 +1,12 @@
 import { useCallback, useReducer } from "react";
 import { EPlayingAction, ETileState } from "../enums";
 import { IAction, IGameConfig, IPlayingContext, IState } from "../interfaces";
+import {
+  closeAllTiles,
+  openTileCase,
+  restartGameCase,
+  startGameCase,
+} from "./helpers";
 
 const initialState = {
   isPlaying: false,
@@ -23,100 +29,17 @@ const initialState = {
 
 const playingReducer = (state: IState, action: IAction) => {
   const { type, payload } = action;
-
-  let newButtonOpenStates = [...state.buttonOpenStates];
   switch (type) {
     case EPlayingAction.NEW:
       return initialState;
     case EPlayingAction.START:
-      return {
-        ...state,
-        isPlaying: true,
-        gameConfig: payload?.gameConfig,
-      };
+      return startGameCase(state, payload!);
     case EPlayingAction.RESTART:
-      return {
-        ...state,
-        isPlaying: true,
-        gameConfig: state.gameConfig,
-        countOpen: 0,
-        buttonOpenStates: Array.from(Array(36).fill(ETileState.CLOSE)),
-      };
+      return restartGameCase(state);
     case EPlayingAction.OPEN:
-      newButtonOpenStates[payload?.buttonIndex!] = ETileState.OPEN;
-      //TODO: Nếu chưa mở ô đầu
-      if (!state.firstOpenTile.value) {
-        return {
-          ...state,
-          countOpen: state.countOpen + 1,
-          firstOpenTile: {
-            index: payload?.buttonIndex!,
-            value: payload?.buttonValue!,
-          },
-          buttonOpenStates: newButtonOpenStates,
-        };
-      }
-
-      //TODO: Nếu ô vừa mở là ô đầu
-      if (
-        state.firstOpenTile.value &&
-        payload?.buttonIndex! === state.firstOpenTile.index
-      ) {
-        return {
-          ...state,
-        };
-      }
-
-      //TODO: Đã mở ô đâù, nếu giá trị ô sau và ô đầu giống nhau
-      if (payload?.buttonValue! === state.firstOpenTile.value) {
-        //TODO: Đánh dấu 2 ô done
-        newButtonOpenStates[state.firstOpenTile.index!] = ETileState.DONE;
-        newButtonOpenStates[payload?.buttonIndex!] = ETileState.DONE;
-        return {
-          ...state,
-          countOpen: state.countOpen + 1,
-          firstOpenTile: {
-            index: null,
-            value: null,
-          },
-          secondOpenTile: {
-            index: null,
-            value: null,
-          },
-          buttonOpenStates: newButtonOpenStates,
-        };
-      }
-
-      //TODO: Nếu không giống nhau
-      newButtonOpenStates[payload?.buttonIndex!] = ETileState.OPEN;
-      return {
-        ...state,
-        countOpen: state.countOpen + 1,
-        secondOpenTile: {
-          index: payload?.buttonIndex!,
-          value: payload?.buttonValue!,
-        },
-        buttonOpenStates: newButtonOpenStates,
-      };
-
+      return openTileCase(state, payload!);
     case EPlayingAction.CLOSEALL:
-      newButtonOpenStates = newButtonOpenStates.map((state) => {
-        if (state === ETileState.DONE) return state;
-        else return ETileState.CLOSE;
-      });
-
-      return {
-        ...state,
-        firstOpenTile: {
-          index: null,
-          value: null,
-        },
-        secondOpenTile: {
-          index: null,
-          value: null,
-        },
-        buttonOpenStates: newButtonOpenStates,
-      };
+      return closeAllTiles(state);
     default:
       return state;
   }

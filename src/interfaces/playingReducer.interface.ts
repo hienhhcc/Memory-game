@@ -1,5 +1,5 @@
-import { EPlayingAction, ETileState } from '../enums';
-import { IGameConfig } from './gameConfig.interface';
+import { EPlayingAction, ETileState } from "../enums";
+import { IGameConfig } from "./gameConfig.interface";
 
 export interface IState {
   isPlaying: boolean;
@@ -16,11 +16,13 @@ export interface IState {
   buttonOpenStates: (ETileState.OPEN | ETileState.CLOSE | ETileState.DONE)[];
 }
 
+export interface IPayload {
+  gameConfig?: IGameConfig | any;
+  buttonIndex?: number;
+  buttonValue?: any;
+}
+
 export interface IAction {
   type: EPlayingAction;
-  payload?: {
-    gameConfig?: IGameConfig | any;
-    buttonIndex?: number;
-    buttonValue?: any;
-  };
+  payload?: IPayload;
 }
