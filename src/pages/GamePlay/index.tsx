@@ -3,8 +3,8 @@ import { GamePlayActions, GamePlayGrid } from "../../components";
 import usePlaying from "../../contexts/usePlaying";
 
 const GamePlay = () => {
-  const { countOpen, closeAllTiles } = usePlaying();
-  // Đóng tất cả các tiles trừ các tiles đã được giải
+  const { countOpen, closeAllTiles, isGameFinished } = usePlaying();
+  //! Đóng tất cả các tiles trừ các tiles đã được giải
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     // console.log(countOpen);

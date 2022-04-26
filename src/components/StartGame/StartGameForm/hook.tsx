@@ -1,10 +1,10 @@
-import { SubmitHandler } from 'react-hook-form';
-import usePlaying from '../../../contexts/usePlaying';
+import { SubmitHandler } from "react-hook-form";
+import usePlaying from "../../../contexts/usePlaying";
 
 interface IFormValues {
   theme: string;
   numPlayer: string;
-  gridSize: string;
+  gridSize: number;
 }
 
 const useStartGameForm = () => {
@@ -12,7 +12,7 @@ const useStartGameForm = () => {
 
   const onSubmitStartGame: SubmitHandler<IFormValues> = (values) => {
     console.log(values);
-    startGame({ ...values });
+    startGame({ ...values, gridSize: +values.gridSize });
   };
 
   return {

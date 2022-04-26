@@ -3,8 +3,10 @@ import { IGameConfig } from "./gameConfig.interface";
 
 export interface IState {
   isPlaying: boolean;
+  isGameFinished: boolean;
   gameConfig: IGameConfig;
   countOpen: number;
+  tilesDoneCount: number;
   firstOpenTile: {
     index: number | null;
     value: any;

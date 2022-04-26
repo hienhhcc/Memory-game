@@ -1,9 +1,11 @@
-import { createContext } from 'react';
-import { ETileState } from '../enums';
-import { IGameConfig, IPlayingContext } from '../interfaces';
+import { createContext } from "react";
+import { ETileState } from "../enums";
+import { IGameConfig, IPlayingContext } from "../interfaces";
 
 const PlayingContext = createContext<IPlayingContext>({
   isPlaying: false,
+  isGameFinished: false,
+  tilesDoneCount: 0,
   gameConfig: {
     theme: null,
     numPlayer: null,

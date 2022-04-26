@@ -2,7 +2,7 @@ import { useCallback, useReducer } from "react";
 import { EPlayingAction, ETileState } from "../enums";
 import { IAction, IGameConfig, IPlayingContext, IState } from "../interfaces";
 import {
-  closeAllTiles,
+  closeAllTilesCase,
   openTileCase,
   restartGameCase,
   startGameCase,
@@ -10,12 +10,14 @@ import {
 
 const initialState = {
   isPlaying: false,
+  isGameFinished: false,
   gameConfig: {
     theme: null,
     numPlayer: null,
     gridSize: null,
   },
   countOpen: 0,
+  tilesDoneCount: 0,
   firstOpenTile: {
     index: null,
     value: null,
@@ -39,7 +41,7 @@ const playingReducer = (state: IState, action: IAction) => {
     case EPlayingAction.OPEN:
       return openTileCase(state, payload!);
     case EPlayingAction.CLOSEALL:
-      return closeAllTiles(state);
+      return closeAllTilesCase(state);
     default:
       return state;
   }
@@ -82,8 +84,10 @@ const usePlayingContextProvider = (): IPlayingContext => {
 
   return {
     isPlaying: state.isPlaying,
+    isGameFinished: state.isGameFinished,
     gameConfig: state.gameConfig,
     countOpen: state.countOpen,
+    tilesDoneCount: state.tilesDoneCount,
     buttonOpenStates: state.buttonOpenStates,
     firstOpenTile: state.firstOpenTile,
     secondOpenTile: state.secondOpenTile,
