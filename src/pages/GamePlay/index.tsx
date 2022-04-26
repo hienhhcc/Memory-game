@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { GamePlayActions, GamePlayGrid } from "../../components";
+import { GamePlayActions, GamePlayGrid, Modal } from "../../components";
 import usePlaying from "../../contexts/usePlaying";
 
 const GamePlay = () => {
@@ -23,6 +23,8 @@ const GamePlay = () => {
 
   return (
     <main className='p-10'>
+      {/* {isGameFinished && <Modal />} */}
+      <Modal />
       <GamePlayActions />
       <GamePlayGrid />
     </main>

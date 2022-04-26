@@ -78,6 +78,7 @@ export const openTileCase = (state: IState, payload: IPayload): IState => {
         index: null,
         value: null,
       },
+      tilesDoneCount: state.tilesDoneCount + 2,
       buttonOpenStates: newButtonOpenStates,
     };
   }
