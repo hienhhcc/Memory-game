@@ -22,11 +22,11 @@ const GamePlayGridItem = ({ children, buttonIndex }: Props) => {
         (firstOpenTile.value && secondOpenTile.value) ||
         buttonOpenStates[buttonIndex] === ETileState.DONE
       }
-      className={`w-14 h-14 rounded-full outline-none ${
+      className={`w-14 h-14 rounded-full outline-none  ${
         buttonOpenStates[buttonIndex] === ETileState.OPEN
-          ? "bg-orange-500 text-white text-base"
+          ? "bg-orange-500 text-white text-2xl text-bold"
           : buttonOpenStates[buttonIndex] === ETileState.DONE
-          ? "bg-slate-400 text-white  text-base"
+          ? "bg-slate-400 text-white  text-2xl text-bold"
           : "bg-slate-700 text-slate-700 text-[0px]"
       }`}
     >
