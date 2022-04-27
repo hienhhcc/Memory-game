@@ -23,8 +23,7 @@ const GamePlay = () => {
 
   return (
     <main className='p-10'>
-      {/* {isGameFinished && <Modal />} */}
-      <Modal />
+      {isGameFinished && <Modal />}
       <GamePlayActions />
       <GamePlayGrid />
     </main>

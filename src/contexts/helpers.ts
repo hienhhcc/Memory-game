@@ -1,6 +1,27 @@
 import { ETileState } from "../enums";
 import { IPayload, IState } from "../interfaces";
 
+const initialState = {
+  isPlaying: false,
+  isGameFinished: false,
+  gameConfig: {
+    theme: null,
+    numPlayer: null,
+    gridSize: null,
+  },
+  countOpen: 0,
+  tilesDoneCount: 0,
+  firstOpenTile: {
+    index: null,
+    value: null,
+  },
+  secondOpenTile: {
+    index: null,
+    value: null,
+  },
+  buttonOpenStates: Array.from(Array(36).fill(ETileState.CLOSE)),
+};
+
 export const startGameCase = (state: IState, payload: IPayload): IState => {
   return {
     ...state,
@@ -11,12 +32,9 @@ export const startGameCase = (state: IState, payload: IPayload): IState => {
 
 export const restartGameCase = (state: IState): IState => {
   return {
-    ...state,
+    ...initialState,
     isPlaying: true,
-    isGameFinished: false,
     gameConfig: state.gameConfig,
-    countOpen: 0,
-    buttonOpenStates: Array.from(Array(36).fill(ETileState.CLOSE)),
   };
 };
 
