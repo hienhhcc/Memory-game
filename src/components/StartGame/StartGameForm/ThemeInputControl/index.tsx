@@ -7,9 +7,9 @@ const radioInputs = [
     inputProps: { id: 'numberTheme', value: 'number', checked: true },
   },
   {
-    label: 'Icons',
+    label: 'Symbols',
     name: 'theme',
-    inputProps: { id: 'iconTheme', value: 'icon' },
+    inputProps: { id: 'iconTheme', value: 'symbol' },
   },
 ];
 
