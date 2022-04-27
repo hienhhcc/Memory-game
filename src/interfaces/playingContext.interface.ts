@@ -1,13 +1,20 @@
-import { ETileState } from "../enums";
+import { EPlayerTurn, ETileState } from "../enums";
 import { IGameConfig } from "./gameConfig.interface";
 
 export interface IPlayingContext {
   isPlaying: boolean;
   isGameFinished: boolean;
+  turn: EPlayerTurn;
+  playerOneTimeTaken: {
+    minute: number;
+    second: number;
+  };
+  playerOneMoveTaken: number;
+  playerTwoMoveTaken: number;
   tilesDoneCount: number;
   gameConfig: {
     theme: string | null;
-    numPlayer: string | null;
+    numPlayer: number | null;
     gridSize: number | null;
   };
   countOpen: number;
@@ -25,4 +32,5 @@ export interface IPlayingContext {
   newGame: () => void;
   openTile: (tileIndex: number, tileValue: any) => void;
   closeAllTiles: () => void;
+  setPlayerOneTimeTaken: (time: { minute: number; second: number }) => void;
 }

@@ -1,10 +1,17 @@
 import { createContext } from "react";
-import { ETileState } from "../enums";
+import { EPlayerTurn, ETileState } from "../enums";
 import { IGameConfig, IPlayingContext } from "../interfaces";
 
 const PlayingContext = createContext<IPlayingContext>({
   isPlaying: false,
   isGameFinished: false,
+  turn: EPlayerTurn.ONE,
+  playerOneTimeTaken: {
+    minute: 0,
+    second: 0,
+  },
+  playerOneMoveTaken: 0,
+  playerTwoMoveTaken: 0,
   tilesDoneCount: 0,
   gameConfig: {
     theme: null,
@@ -26,6 +33,7 @@ const PlayingContext = createContext<IPlayingContext>({
   newGame: () => {},
   openTile: (tileIndex: number, tileValue: any) => {},
   closeAllTiles: () => {},
+  setPlayerOneTimeTaken: (time: { minute: number; second: number }) => {},
 });
 
 export default PlayingContext;

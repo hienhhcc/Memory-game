@@ -1,16 +1,24 @@
 import { useCallback, useReducer } from "react";
-import { EPlayingAction, ETileState } from "../enums";
+import { EPlayingAction, ETileState, EPlayerTurn } from "../enums";
 import { IAction, IGameConfig, IPlayingContext, IState } from "../interfaces";
 import {
   closeAllTilesCase,
   openTileCase,
   restartGameCase,
+  setTimeTakenCase,
   startGameCase,
 } from "./helpers";
 
 const initialState = {
   isPlaying: false,
   isGameFinished: false,
+  turn: EPlayerTurn.ONE,
+  playerOneTimeTaken: {
+    minute: 0,
+    second: 0,
+  },
+  playerOneMoveTaken: 0,
+  playerTwoMoveTaken: 0,
   gameConfig: {
     theme: null,
     numPlayer: null,
@@ -42,13 +50,14 @@ const playingReducer = (state: IState, action: IAction) => {
       return openTileCase(state, payload!);
     case EPlayingAction.CLOSEALL:
       return closeAllTilesCase(state);
+    case EPlayingAction.SETTIME:
+      return setTimeTakenCase(state, payload!);
     default:
       return state;
   }
 };
 
 const usePlayingContextProvider = (): IPlayingContext => {
-  // const [isPlaying, setIsPlaying] = useState(false);
   const [state, dispatch] = useReducer(playingReducer, initialState);
 
   const startGame = useCallback((gameConfig: IGameConfig) => {
@@ -82,9 +91,20 @@ const usePlayingContextProvider = (): IPlayingContext => {
     dispatch({ type: EPlayingAction.CLOSEALL });
   }, []);
 
+  const setPlayerOneTimeTaken = useCallback(
+    (time: { minute: number; second: number }) => {
+      dispatch({ type: EPlayingAction.SETTIME, payload: { time } });
+    },
+    []
+  );
+
   return {
     isPlaying: state.isPlaying,
     isGameFinished: state.isGameFinished,
+    turn: state.turn,
+    playerOneTimeTaken: state.playerOneTimeTaken,
+    playerOneMoveTaken: state.playerOneMoveTaken,
+    playerTwoMoveTaken: state.playerTwoMoveTaken,
     gameConfig: state.gameConfig,
     countOpen: state.countOpen,
     tilesDoneCount: state.tilesDoneCount,
@@ -96,6 +116,7 @@ const usePlayingContextProvider = (): IPlayingContext => {
     newGame,
     openTile,
     closeAllTiles,
+    setPlayerOneTimeTaken,
   };
 };
 

@@ -1,9 +1,16 @@
 import { useEffect } from "react";
-import { GamePlayActions, GamePlayGrid, Modal } from "../../components";
+import {
+  GamePlayActions,
+  GamePlayGrid,
+  GamePlayScore,
+  OnePlayerModal,
+  TwoPlayerModal,
+} from "../../components";
 import usePlaying from "../../contexts/usePlaying";
 
 const GamePlay = () => {
-  const { countOpen, closeAllTiles, isGameFinished } = usePlaying();
+  const { countOpen, closeAllTiles, isGameFinished, gameConfig } = usePlaying();
+  const { numPlayer } = gameConfig;
   //! Đóng tất cả các tiles trừ các tiles đã được giải
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -23,9 +30,11 @@ const GamePlay = () => {
 
   return (
     <main className='p-10'>
-      {isGameFinished && <Modal />}
+      {isGameFinished && numPlayer === 1 && <OnePlayerModal />}
+      {isGameFinished && numPlayer === 2 && <TwoPlayerModal />}
       <GamePlayActions />
       <GamePlayGrid />
+      <GamePlayScore />
     </main>
   );
 };

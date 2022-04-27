@@ -1,4 +1,5 @@
-import { EPlayingAction } from './playingAction.enum';
-import { ETileState } from './tileState.enum';
+import { EPlayingAction } from "./playingAction.enum";
+import { ETileState } from "./tileState.enum";
+import { EPlayerTurn } from "./playerTurn.enum";
 
-export { EPlayingAction, ETileState };
+export { EPlayingAction, ETileState, EPlayerTurn };

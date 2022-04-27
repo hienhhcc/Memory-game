@@ -12,7 +12,11 @@ const useStartGameForm = () => {
 
   const onSubmitStartGame: SubmitHandler<IFormValues> = (values) => {
     console.log(values);
-    startGame({ ...values, gridSize: +values.gridSize });
+    startGame({
+      ...values,
+      gridSize: +values.gridSize,
+      numPlayer: +values.numPlayer,
+    });
   };
 
   return {

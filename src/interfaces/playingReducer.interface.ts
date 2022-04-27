@@ -1,9 +1,16 @@
-import { EPlayingAction, ETileState } from "../enums";
+import { EPlayerTurn, EPlayingAction, ETileState } from "../enums";
 import { IGameConfig } from "./gameConfig.interface";
 
 export interface IState {
   isPlaying: boolean;
   isGameFinished: boolean;
+  turn: EPlayerTurn;
+  playerOneTimeTaken: {
+    minute: number;
+    second: number;
+  };
+  playerOneMoveTaken: number;
+  playerTwoMoveTaken: number;
   gameConfig: IGameConfig;
   countOpen: number;
   tilesDoneCount: number;
@@ -22,6 +29,10 @@ export interface IPayload {
   gameConfig?: IGameConfig | any;
   buttonIndex?: number;
   buttonValue?: any;
+  time?: {
+    minute: number;
+    second: number;
+  };
 }
 
 export interface IAction {
