@@ -166,14 +166,14 @@ const handleTwoTileValueNotEqual = (
   } else {
     if (isFirstPlayerTurn(state)) {
       return {
-        ...state,
-        playerOneMoveTaken: state.playerOneMoveTaken + 1,
+        ...newState,
+        playerOneMoveTaken: newState.playerOneMoveTaken + 1,
         turn: EPlayerTurn.TWO,
       };
     } else {
       return {
-        ...state,
-        playerTwoMoveTaken: state.playerTwoMoveTaken + 1,
+        ...newState,
+        playerTwoMoveTaken: newState.playerTwoMoveTaken + 1,
         turn: EPlayerTurn.ONE,
       };
     }
@@ -186,20 +186,23 @@ const handleOpenTileCase = (
   isSingle: boolean
 ) => {
   if (!isFirstTileOpen(state)) {
+    console.log("FIRST TILE NOT OPEN");
     return handleNotYetOpenFirstTile(state, payload);
   }
 
   if (isSecondTileIsTheFirstOne(state, payload)) {
+    console.log("SECOND TILE IS THE FIRST ONE");
     return {
       ...state,
     };
   }
 
   if (isTwoTileValueEqual(state, payload)) {
+    console.log("TWO TILE EQUAL");
     if (isSingle) return handleTwoTileValueEqual(state, payload, true);
     else return handleTwoTileValueEqual(state, payload, false);
   }
-
+  console.log("TWO TILE NOT EQUAL");
   if (isSingle) {
     return handleTwoTileValueNotEqual(state, payload, true);
   } else {
@@ -208,8 +211,6 @@ const handleOpenTileCase = (
 };
 
 export const openTileCase = (state: IState, payload: IPayload): IState => {
-  let newButtonOpenStates = [...state.buttonOpenStates];
-
   if (isSingle(state)) {
     return handleOpenTileCase(state, payload, true);
   } else {

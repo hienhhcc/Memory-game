@@ -16,6 +16,9 @@ import GridSizeInputControl from "./StartGame/StartGameForm/GridSizeInputControl
 import GamePlayActions from "./GamePlay/GamePlayActions";
 import GamePlayGrid from "./GamePlay/GamePlayGrid";
 import GamePlayScore from "./GamePlay/GamePlayScore";
+import SingleGamePlayScore from "./GamePlay/GamePlayScore/Single";
+import MultiGamePlayScore from "./GamePlay/GamePlayScore/Multi";
+import EachPlayerScore from "./GamePlay/GamePlayScore/Multi/EachPlayerScore";
 
 export {
   StartGameCard,
@@ -36,4 +39,7 @@ export {
   GamePlayActions,
   GamePlayGrid,
   GamePlayScore,
+  SingleGamePlayScore,
+  MultiGamePlayScore,
+  EachPlayerScore,
 };

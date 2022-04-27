@@ -1,23 +1,17 @@
-import { Fragment } from "react";
 import usePlaying from "../../../contexts/usePlaying";
-import { MoveScore, TimeScore } from "../../index";
+import { SingleGamePlayScore, MultiGamePlayScore } from "../../index";
 
 const GamePlayScore = () => {
   const { gameConfig } = usePlaying();
   const { numPlayer } = gameConfig;
 
-  let content = (
-    <Fragment>
-      <TimeScore />
-      <MoveScore />
-    </Fragment>
-  );
+  let content = <SingleGamePlayScore />;
 
-  return (
-    <div className='flex justify-center items-center gap-4 mx-auto my-4'>
-      {content}
-    </div>
-  );
+  if (numPlayer === 2) {
+    content = <MultiGamePlayScore />;
+  }
+
+  return content;
 };
 
 export default GamePlayScore;
