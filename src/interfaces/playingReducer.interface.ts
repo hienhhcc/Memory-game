@@ -10,7 +10,8 @@ export interface IState {
     second: number;
   };
   playerOneMoveTaken: number;
-  playerTwoMoveTaken: number;
+  playerOneScore: number;
+  playerTwoScore: number;
   gameConfig: IGameConfig;
   countOpen: number;
   tilesDoneCount: number;

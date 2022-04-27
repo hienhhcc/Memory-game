@@ -11,7 +11,8 @@ const PlayingContext = createContext<IPlayingContext>({
     second: 0,
   },
   playerOneMoveTaken: 0,
-  playerTwoMoveTaken: 0,
+  playerOneScore: 0,
+  playerTwoScore: 0,
   tilesDoneCount: 0,
   gameConfig: {
     theme: null,

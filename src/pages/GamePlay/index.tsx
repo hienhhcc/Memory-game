@@ -18,7 +18,7 @@ const GamePlay = () => {
     if (countOpen % 2 === 0 && countOpen !== 0) {
       timeout = setTimeout(() => {
         closeAllTiles();
-      }, 1000);
+      }, 500);
     }
 
     return () => {

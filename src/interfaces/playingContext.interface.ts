@@ -10,7 +10,8 @@ export interface IPlayingContext {
     second: number;
   };
   playerOneMoveTaken: number;
-  playerTwoMoveTaken: number;
+  playerOneScore: number;
+  playerTwoScore: number;
   tilesDoneCount: number;
   gameConfig: {
     theme: string | null;

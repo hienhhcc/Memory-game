@@ -4,29 +4,29 @@ import { EPlayerTurn } from "../../../../enums";
 import EachPlayerScore from "./EachPlayerScore";
 
 const MultiGamePlayScore = () => {
-  const { playerOneMoveTaken, playerTwoMoveTaken, turn } = usePlaying();
+  const { playerOneScore, playerTwoScore, turn } = usePlaying();
 
   const players = useMemo(() => {
     return [
       {
         player: "Player 1",
-        moveCount: playerOneMoveTaken,
+        scoreCount: playerOneScore,
         turn: EPlayerTurn.ONE,
       },
       {
         player: "Player 2",
-        moveCount: playerTwoMoveTaken,
+        scoreCount: playerTwoScore,
         turn: EPlayerTurn.TWO,
       },
     ];
-  }, [playerOneMoveTaken, playerTwoMoveTaken]);
+  }, [playerOneScore, playerTwoScore]);
 
   return (
     <div className='flex justify-center items-center gap-4 mx-auto my-4'>
       {players.map((playerScore) => (
         <EachPlayerScore
           player={playerScore.player}
-          moveCount={playerScore.moveCount}
+          scoreCount={playerScore.scoreCount}
           thisTurn={playerScore.turn === turn}
           key={playerScore.player}
         />

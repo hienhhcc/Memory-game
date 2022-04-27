@@ -10,7 +10,8 @@ const initialState = {
     second: 0,
   },
   playerOneMoveTaken: 0,
-  playerTwoMoveTaken: 0,
+  playerOneScore: 0,
+  playerTwoScore: 0,
   gameConfig: {
     theme: null,
     numPlayer: null,
@@ -94,15 +95,13 @@ const handleTwoTileValueEqual = (
       return {
         ...state,
         isGameFinished: true,
-        playerOneMoveTaken: state.playerOneMoveTaken + 1,
-        turn: EPlayerTurn.TWO,
+        playerOneScore: state.playerOneScore + 1,
       };
     } else {
       return {
         ...state,
         isGameFinished: true,
-        playerTwoMoveTaken: state.playerTwoMoveTaken + 1,
-        turn: EPlayerTurn.ONE,
+        playerTwoScore: state.playerTwoScore + 1,
       };
     }
   }
@@ -129,14 +128,12 @@ const handleTwoTileValueEqual = (
   if (isFirstPlayerTurn(state)) {
     return {
       ...newState,
-      playerOneMoveTaken: state.playerOneMoveTaken + 1,
-      turn: EPlayerTurn.TWO,
+      playerOneScore: state.playerOneScore + 1,
     };
   } else {
     return {
       ...newState,
-      playerTwoMoveTaken: state.playerTwoMoveTaken + 1,
-      turn: EPlayerTurn.ONE,
+      playerTwoScore: state.playerTwoScore + 1,
     };
   }
 };
@@ -167,13 +164,11 @@ const handleTwoTileValueNotEqual = (
     if (isFirstPlayerTurn(state)) {
       return {
         ...newState,
-        playerOneMoveTaken: newState.playerOneMoveTaken + 1,
         turn: EPlayerTurn.TWO,
       };
     } else {
       return {
         ...newState,
-        playerTwoMoveTaken: newState.playerTwoMoveTaken + 1,
         turn: EPlayerTurn.ONE,
       };
     }
@@ -186,23 +181,19 @@ const handleOpenTileCase = (
   isSingle: boolean
 ) => {
   if (!isFirstTileOpen(state)) {
-    console.log("FIRST TILE NOT OPEN");
     return handleNotYetOpenFirstTile(state, payload);
   }
 
   if (isSecondTileIsTheFirstOne(state, payload)) {
-    console.log("SECOND TILE IS THE FIRST ONE");
     return {
       ...state,
     };
   }
 
   if (isTwoTileValueEqual(state, payload)) {
-    console.log("TWO TILE EQUAL");
     if (isSingle) return handleTwoTileValueEqual(state, payload, true);
     else return handleTwoTileValueEqual(state, payload, false);
   }
-  console.log("TWO TILE NOT EQUAL");
   if (isSingle) {
     return handleTwoTileValueNotEqual(state, payload, true);
   } else {

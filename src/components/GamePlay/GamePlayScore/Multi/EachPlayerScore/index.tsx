@@ -1,10 +1,10 @@
 interface Props {
   player: string;
-  moveCount: number;
+  scoreCount: number;
   thisTurn: boolean;
 }
 
-const EachPlayerScore = ({ moveCount, player, thisTurn }: Props) => {
+const EachPlayerScore = ({ scoreCount, player, thisTurn }: Props) => {
   return (
     <div
       className={`rounded-lg p-4 min-w-[9rem] md:min-w-[12rem] ${
@@ -12,7 +12,7 @@ const EachPlayerScore = ({ moveCount, player, thisTurn }: Props) => {
       }`}
     >
       <h3 className='text-sm'>{player}</h3>
-      <div className='text-xl text-bold'>{moveCount}</div>
+      <div className='text-xl text-bold'>{scoreCount}</div>
     </div>
   );
 };
