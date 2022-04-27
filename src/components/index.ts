@@ -5,6 +5,7 @@ import RadioInputLabel from "./Form/RadioInput/RadioInputLabel";
 import Form from "./Form";
 import Button from "./Button";
 import Modal from "./Modal";
+import Backdrop from "./Backdrop";
 import ThemeInputControl from "./StartGame/StartGameForm/ThemeInputControl";
 import PlayersInputControl from "./StartGame/StartGameForm/PlayersInputControl";
 import GridSizeInputControl from "./StartGame/StartGameForm/GridSizeInputControl";
@@ -19,6 +20,7 @@ export {
   Form,
   Button,
   Modal,
+  Backdrop,
   ThemeInputControl,
   PlayersInputControl,
   GridSizeInputControl,

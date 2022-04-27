@@ -1,12 +1,13 @@
 import { Fragment } from "react";
 import { createPortal } from "react-dom";
 import usePlaying from "../../contexts/usePlaying";
-import Button from "../Button";
+import { Backdrop, Button } from "../index";
 
 const Modal = () => {
   const { restartGame, newGame } = usePlaying();
   return (
     <Fragment>
+      <Backdrop />
       {createPortal(
         <div className='fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-10 p-6 text-center shadow-lg rounded-lg bg-slate-100 min-w-[350px] lg:min-w-[800px] '>
           <h2 className='text-3xl font-bold'>You Did It!</h2>
